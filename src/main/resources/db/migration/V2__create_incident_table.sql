@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS incident (
     action_amount INT,
     price_threshold FLOAT,
     action_id BIGINT,
-    customer_id BIGINT,
-    FOREIGN KEY (action_id) REFERENCES action_type(id) ON DELETE CASCADE,
-    FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE
+    customer_email VARCHAR(255),
+    FOREIGN KEY (action_id) REFERENCES action_type(id) ON DELETE CASCADE
 );

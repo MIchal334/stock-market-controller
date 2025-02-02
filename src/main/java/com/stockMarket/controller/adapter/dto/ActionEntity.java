@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "action_type")
 @Getter
-class ActionEntity {
+public class ActionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,5 +18,13 @@ class ActionEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<IncidentEntity> incidentList;
+
+    public ActionEntity(String actionName) {
+        this.actionName = actionName;
+    }
+
+    static ActionEntity of(String name){
+        return new ActionEntity(name);
+    }
 
 }

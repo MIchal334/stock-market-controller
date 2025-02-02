@@ -1,6 +1,7 @@
 package com.stockMarket.controller.adapter.dto;
 
 
+import com.stockMarket.controller.domain.Incident;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -22,12 +23,24 @@ public class IncidentEntity {
     @Column(name = "price_threshold")
     private float priceThreshold;
 
+    @Column(name = "customer_email")
+    private String customerEmail;
+
     @ManyToOne
     @JoinColumn(name = "action_id")
     private ActionEntity action;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_email")
-    private CustomerEntity customer;
+    public IncidentEntity(String companyName, int actionAmount, float priceThreshold, String customerEmail, String action) {
+        this.companyName = companyName;
+        this.actionAmount = actionAmount;
+        this.priceThreshold = priceThreshold;
+        this.customerEmail = customerEmail;
+        this.action = ActionEntity.of(action);
+    }
+
+
+    public static IncidentEntity of(String email, Incident incident) {
+        return new IncidentEntity(incident.companyName(), incident.actionAmount(), incident.priceThreshold(), email, incident.action().name());
+    }
 
 }

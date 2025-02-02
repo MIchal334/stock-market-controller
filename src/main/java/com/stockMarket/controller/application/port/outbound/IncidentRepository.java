@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IncidentRepository {
 
-    void addNewIncidentToCheck(String userEmail,int actionId, Incident incident);
+    void addNewIncidentToCheck(String userEmail, Incident incident);
 
-//    List<Incident> getAllIncident();
-//
-//    void deleteIncidentByID(Long id);
+    List<Incident> getAllIncident();
+
+    void deleteIncidentByID(Long id);
 }
