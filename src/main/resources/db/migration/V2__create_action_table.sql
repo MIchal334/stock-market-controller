@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS action_type (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    action_name VARCHAR(40)
+);
