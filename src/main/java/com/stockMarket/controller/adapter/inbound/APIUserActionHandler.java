@@ -23,14 +23,14 @@ class APIUserActionHandler {
         return ResponseEntity.ok(this.stockMarketService.getAllIncidentByEmail(email));
     }
 
-
-    public ResponseEntity<?> addNewIncident(Incident incident) {
+    @PostMapping
+    public ResponseEntity<?> addNewIncident(@RequestBody Incident incident) {
         this.stockMarketService.addNewIncident(incident);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-
-    public ResponseEntity<?> deleteIncidentById(Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteIncidentById(@PathVariable Long id) {
         this.stockMarketService.removeIncidentById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
