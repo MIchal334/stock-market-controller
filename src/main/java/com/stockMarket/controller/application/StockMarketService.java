@@ -1,7 +1,6 @@
 package com.stockMarket.controller.application;
 
 import com.stockMarket.controller.adapter.outbound.DBIncidentRepository;
-import com.stockMarket.controller.domain.ActionName;
 import com.stockMarket.controller.domain.Incident;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +24,11 @@ public class StockMarketService {
 
 
     public void removeIncidentById(Long id) {
-
+        this.dbIncidentRepository.deleteIncidentById(id);
     }
 
     public List<Incident> getAllIncidentByEmail(String email) {
-        return List.of();
+        return this.dbIncidentRepository.getAllIncidentByEmail(email);
     }
 
 

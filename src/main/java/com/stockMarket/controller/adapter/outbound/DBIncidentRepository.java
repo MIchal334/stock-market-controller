@@ -28,12 +28,13 @@ public class DBIncidentRepository implements IncidentRepository {
     }
 
     @Override
-    public List<Incident> getAllIncident() {
-        return List.of();
+    public List<Incident> getAllIncidentByEmail(String email) {
+        return this.jpaIncidentRepository.findAll().stream()
+                .filter(incidentEntity -> incidentEntity.getCustomerEmail().equals(email)).map(Incident::of).toList();
     }
 
     @Override
-    public void deleteIncidentByID(Long id) {
-
+    public void deleteIncidentById(Long id) {
+        this.jpaIncidentRepository.deleteById(id);
     }
 }

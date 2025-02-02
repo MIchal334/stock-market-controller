@@ -29,8 +29,8 @@ class APIUserActionHandler {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> deleteIncidentById(Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteIncidentById(@PathVariable Long id) {
         this.stockMarketService.removeIncidentById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

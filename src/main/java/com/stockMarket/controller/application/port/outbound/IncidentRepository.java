@@ -8,7 +8,7 @@ public interface IncidentRepository {
 
     void addNewIncidentToCheck(String userEmail, Incident incident);
 
-    List<Incident> getAllIncident();
+    List<Incident> getAllIncidentByEmail(String email);
 
-    void deleteIncidentByID(Long id);
+    void deleteIncidentById(Long id);
 }

@@ -4,10 +4,12 @@ package com.stockMarket.controller.adapter.dto;
 import com.stockMarket.controller.domain.Incident;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "incident")
 @Getter
+@NoArgsConstructor
 public class IncidentEntity {
 
     @Id
