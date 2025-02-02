@@ -24,8 +24,8 @@ class APIUserActionHandler {
     }
 
     @PostMapping
-    public ResponseEntity<?> addNewIncident() {
-        this.stockMarketService.addNewIncident();
+    public ResponseEntity<?> addNewIncident(@RequestBody Incident incident) {
+        this.stockMarketService.addNewIncident(incident);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

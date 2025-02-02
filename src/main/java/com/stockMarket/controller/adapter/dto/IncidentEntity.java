@@ -30,17 +30,17 @@ public class IncidentEntity {
     @JoinColumn(name = "action_id")
     private ActionEntity action;
 
-    public IncidentEntity(String companyName, int actionAmount, float priceThreshold, String customerEmail, String action) {
+    public IncidentEntity(String companyName, int actionAmount, float priceThreshold, String customerEmail, ActionEntity action) {
         this.companyName = companyName;
         this.actionAmount = actionAmount;
         this.priceThreshold = priceThreshold;
         this.customerEmail = customerEmail;
-        this.action = ActionEntity.of(action);
+        this.action = action;
     }
 
 
-    public static IncidentEntity of(String email, Incident incident) {
-        return new IncidentEntity(incident.companyName(), incident.actionAmount(), incident.priceThreshold(), email, incident.action().name());
+    public static IncidentEntity of(String email, Incident incident, ActionEntity action) {
+        return new IncidentEntity(incident.companyName(), incident.actionAmount(), incident.priceThreshold(), email, action);
     }
 
 }

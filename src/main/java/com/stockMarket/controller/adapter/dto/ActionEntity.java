@@ -2,12 +2,14 @@ package com.stockMarket.controller.adapter.dto;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Table(name = "action_type")
 @Getter
+@NoArgsConstructor
 public class ActionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +25,5 @@ public class ActionEntity {
         this.actionName = actionName;
     }
 
-    static ActionEntity of(String name){
-        return new ActionEntity(name);
-    }
 
 }
