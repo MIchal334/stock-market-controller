@@ -9,4 +9,6 @@ interface IncidentRepository {
     void addNewIncidentToCheck(String userEmail, Incident incident);
 
     List<Incident> getAllIncident();
+
+    void deleteIncidentByID(Long id);
 }
