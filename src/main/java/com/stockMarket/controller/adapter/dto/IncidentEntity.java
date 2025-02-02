@@ -7,7 +7,7 @@ import lombok.Getter;
 @Entity
 @Table(name = "incident")
 @Getter
-class IncidentEntity {
+public class IncidentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ class IncidentEntity {
     private ActionEntity action;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_email")
     private CustomerEntity customer;
 
 }

@@ -4,11 +4,11 @@ import com.stockMarket.controller.domain.Incident;
 
 import java.util.List;
 
-interface IncidentRepository {
+public interface IncidentRepository {
 
-    void addNewIncidentToCheck(String userEmail, Incident incident);
+    void addNewIncidentToCheck(String userEmail,int actionId, Incident incident);
 
-    List<Incident> getAllIncident();
-
-    void deleteIncidentByID(Long id);
+//    List<Incident> getAllIncident();
+//
+//    void deleteIncidentByID(Long id);
 }
