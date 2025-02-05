@@ -28,21 +28,26 @@ public class IncidentEntity {
     @Column(name = "customer_email")
     private String customerEmail;
 
+    @Column(name = "compere_sing")
+    private String compereSing;
+
     @ManyToOne
     @JoinColumn(name = "action_id")
     private ActionEntity action;
 
-    public IncidentEntity(String companyName, int actionAmount, float priceThreshold, String customerEmail, ActionEntity action) {
+    public IncidentEntity(String companyName, int actionAmount, float priceThreshold, String customerEmail, ActionEntity action, String compereSing) {
         this.companyName = companyName;
         this.actionAmount = actionAmount;
         this.priceThreshold = priceThreshold;
         this.customerEmail = customerEmail;
         this.action = action;
+        this.compereSing = compereSing;
+
     }
 
 
     public static IncidentEntity of(String email, Incident incident, ActionEntity action) {
-        return new IncidentEntity(incident.companyName(), incident.actionAmount(), incident.priceThreshold(), email, action);
+        return new IncidentEntity(incident.companyName(), incident.actionAmount(), incident.priceThreshold(), email, action, incident.checkType().getSymbol());
     }
 
 }
