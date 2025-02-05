@@ -21,3 +21,8 @@ server:
 
 kafka:
   address: "localhost:9092"
+
+
+market:
+  address: "localhost:8081"
+  dataEndpoint: "/products"
