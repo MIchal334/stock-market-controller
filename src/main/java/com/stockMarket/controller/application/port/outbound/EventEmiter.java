@@ -4,6 +4,6 @@ import com.stockMarket.controller.domain.Incident;
 
 public interface EventEmiter {
 
-    void emit(Incident incident);
+    void emit(Incident incident, String topic);
 
 }
