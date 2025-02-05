@@ -4,7 +4,9 @@ import com.stockMarket.controller.adapter.inbound.FakeAPIMarketDataProvider;
 import com.stockMarket.controller.adapter.outbound.DBIncidentRepository;
 import com.stockMarket.controller.adapter.outbound.JpaActionRepository;
 import com.stockMarket.controller.adapter.outbound.JpaIncidentRepository;
+import com.stockMarket.controller.adapter.outbound.KafkaEventEmiter;
 import com.stockMarket.controller.application.port.inbound.MarketDataProvider;
+import com.stockMarket.controller.application.port.outbound.EventEmiter;
 import com.stockMarket.controller.application.port.outbound.IncidentRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +28,11 @@ public class AppConfig {
     @Bean
     MarketDataProvider marketDataProvider() {
         return new FakeAPIMarketDataProvider(webClient);
+    }
+
+    @Bean
+    EventEmiter eventEmiter() {
+        return new KafkaEventEmiter();
     }
 
 

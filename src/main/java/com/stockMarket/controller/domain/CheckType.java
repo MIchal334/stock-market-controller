@@ -10,8 +10,6 @@ import java.util.HashMap;
 public enum CheckType {
     GREATER_THAN(">", (a, b) -> a > b),
     LESS_THAN("<", (a, b) -> a < b),
-    EQUALS("==", (a, b) -> a == b),
-    NOT_EQUALS("!=", (a, b) -> a != b),
     GREATER_OR_EQUAL(">=", (a, b) -> a >= b),
     LESS_OR_EQUAL("<=", (a, b) -> a <= b);
 

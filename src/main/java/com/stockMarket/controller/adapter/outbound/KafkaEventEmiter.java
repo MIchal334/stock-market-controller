@@ -5,7 +5,7 @@ import com.stockMarket.controller.domain.Incident;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 
-class KafkaEventEmiter implements EventEmiter {
+public class KafkaEventEmiter implements EventEmiter {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
