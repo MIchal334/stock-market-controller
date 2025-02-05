@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class FakeAPIMarketDataProvider implements MarketDataProvider {
-    @Value(value = "market.dataEndpoint")
+    @Value(value = "${market.dataEndpoint}")
     private String endpoint;
 
     @Autowired
@@ -24,7 +24,7 @@ public class FakeAPIMarketDataProvider implements MarketDataProvider {
     @Override
     public Map<String, Float> getActionPriceForCompanyList(List<String> companyList) {
         return webClient.get()
-                .uri(uriBuilder -> uriBuilder.path(endpoint).build())
+                .uri(endpoint)
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<Map<String, Float>>() {
                 })

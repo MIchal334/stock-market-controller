@@ -19,17 +19,17 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
-    @Value(value = "kafka.address")
+    @Value(value = "${kafka.address}")
     private String bootstrapAddress;
 
     @Bean
-    public KafkaTemplate<String, Incident> kafkaTemplate() {
+    public KafkaTemplate<String, String> kafkaTemplate() {
         Map<String, Object> producerProps = new HashMap<>();
         producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
-        ProducerFactory<String, Incident> producerFactory = new DefaultKafkaProducerFactory<>(producerProps);
+        ProducerFactory<String, String> producerFactory = new DefaultKafkaProducerFactory<>(producerProps);
         return new KafkaTemplate<>(producerFactory);
     }
 }

@@ -4,6 +4,7 @@ import com.stockMarket.controller.application.port.inbound.MarketDataProvider;
 import com.stockMarket.controller.application.port.outbound.EventEmiter;
 import com.stockMarket.controller.application.port.outbound.IncidentRepository;
 import com.stockMarket.controller.domain.Incident;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class StockMarketService {
         return incidentRepository.getAllIncidentByEmail(email);
     }
 
+    @Scheduled(fixedRate = 5 * 1000)
     public void checkIncidents() {
         List<Incident> incidentList = incidentRepository.getAllIncidentByEmail(DEFAULT_EMAIL);
         Map<String, Float> currentPriceState = marketDataProvider.getActionPriceForCompanyList(incidentList.stream()

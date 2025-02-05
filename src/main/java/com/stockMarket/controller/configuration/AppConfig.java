@@ -10,9 +10,11 @@ import com.stockMarket.controller.application.port.outbound.EventEmiter;
 import com.stockMarket.controller.application.port.outbound.IncidentRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
+@EnableScheduling
 public class AppConfig {
     private final WebClient webClient;
 
