@@ -30,7 +30,9 @@ public class DBIncidentRepository implements IncidentRepository {
     @Override
     public List<Incident> getAllIncidentByEmail(String email) {
         return this.jpaIncidentRepository.findAll().stream()
-                .filter(incidentEntity -> incidentEntity.getCustomerEmail().equals(email)).map(Incident::of).toList();
+                .filter(incidentEntity -> incidentEntity.getCustomerEmail().equals(email))
+                .map(entity -> Incident.of(entity, email))
+                .toList();
     }
 
     @Override

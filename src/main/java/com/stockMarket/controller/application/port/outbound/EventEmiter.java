@@ -2,8 +2,8 @@ package com.stockMarket.controller.application.port.outbound;
 
 import com.stockMarket.controller.domain.Incident;
 
-interface EventEmiter {
+public interface EventEmiter {
 
-    void emit(Incident incident);
+    void emit(Incident incident, String topic);
 
 }
