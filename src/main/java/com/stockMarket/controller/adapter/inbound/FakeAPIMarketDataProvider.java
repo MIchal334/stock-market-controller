@@ -13,6 +13,7 @@ public class FakeAPIMarketDataProvider implements MarketDataProvider {
     @Value(value = "market.dataEndpoint")
     private String endpoint;
 
+    @Autowired
     private final WebClient webClient;
 
     public FakeAPIMarketDataProvider(WebClient webClient) {
