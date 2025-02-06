@@ -1,12 +1,11 @@
 package com.stockMarket.controller.domain;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stockMarket.controller.adapter.dto.IncidentEntity;
 
 public record Incident(String clientEmail, String companyName, float priceThreshold, ActionName action,
-                       int actionAmount) {
+                       int actionAmount, CheckType checkType) {
     static private final ObjectMapper objectMapper = new ObjectMapper();
 
     public String toJson() {
@@ -19,7 +18,8 @@ public record Incident(String clientEmail, String companyName, float priceThresh
 
     public static Incident of(IncidentEntity incidentEntity, String email) {
         return new Incident(email, incidentEntity.getCompanyName(), incidentEntity.getPriceThreshold(),
-                ActionName.valueOf(incidentEntity.getAction().getActionName()), incidentEntity.getActionAmount());
+                ActionName.valueOf(incidentEntity.getAction().getActionName()), incidentEntity.getActionAmount(),
+                CheckType.fromSymbol(incidentEntity.getCompereSing()));
     }
 
 }

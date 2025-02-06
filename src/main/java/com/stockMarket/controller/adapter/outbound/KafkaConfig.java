@@ -1,10 +1,7 @@
 package com.stockMarket.controller.adapter.outbound;
 
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.ser.std.StringSerializer;
-import com.stockMarket.controller.domain.Incident;
-import org.apache.kafka.clients.admin.AdminClientConfig;
-import org.apache.kafka.clients.admin.NewTopic;
+
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -19,17 +16,18 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
-    @Value(value = "kafka.address")
+    @Value(value = "${kafka.address}")
     private String bootstrapAddress;
 
     @Bean
-    public KafkaTemplate<String, Incident> kafkaTemplate() {
+    public KafkaTemplate<String, String> kafkaTemplate() {
         Map<String, Object> producerProps = new HashMap<>();
-        producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
-        ProducerFactory<String, Incident> producerFactory = new DefaultKafkaProducerFactory<>(producerProps);
+
+        ProducerFactory<String, String> producerFactory = new DefaultKafkaProducerFactory<>(producerProps);
         return new KafkaTemplate<>(producerFactory);
     }
 }

@@ -4,8 +4,10 @@ import com.stockMarket.controller.application.port.outbound.EventEmiter;
 import com.stockMarket.controller.domain.Incident;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
 
-class KafkaEventEmiter implements EventEmiter {
+@Component
+public class KafkaEventEmiter implements EventEmiter {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 

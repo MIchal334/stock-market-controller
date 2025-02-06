@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS incident (
     price_threshold FLOAT,
     action_id BIGINT,
     customer_email VARCHAR(255),
+    compere_sing VARCHAR(30),
     FOREIGN KEY (action_id) REFERENCES action_type(id) ON DELETE CASCADE
 );
