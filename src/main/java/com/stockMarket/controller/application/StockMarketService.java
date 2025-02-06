@@ -43,12 +43,13 @@ public class StockMarketService {
 
     @Scheduled(fixedRate = 5 * 1000)
     public void checkIncidents() {
+        System.out.println("CHECK");
         List<Incident> incidentList = incidentRepository.getAllIncidentByEmail(DEFAULT_EMAIL);
         Map<String, Float> currentPriceState = marketDataProvider.getActionPriceForCompanyList(incidentList.stream()
                 .map(Incident::companyName)
                 .toList());
-        List<Incident> incidentToPropagate = this.findIncidentToPropagate(incidentList, currentPriceState);
-        this.propagateIncidentList(incidentToPropagate);
+        List<Incident> incidentToPropagate = findIncidentToPropagate(incidentList, currentPriceState);
+        propagateIncidentList(incidentToPropagate);
     }
 
     private void propagateIncidentList(List<Incident> incidentToPropagate) {
