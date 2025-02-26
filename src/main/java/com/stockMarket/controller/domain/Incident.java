@@ -3,7 +3,9 @@ package com.stockMarket.controller.domain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stockMarket.controller.adapter.dto.IncidentEntity;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public record Incident(Long internalId, String clientEmail, String companyName, float priceThreshold, ActionName action,
                        int actionAmount, CheckType checkType) {
     static private final ObjectMapper objectMapper = new ObjectMapper();

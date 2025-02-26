@@ -50,7 +50,7 @@ public class StockMarketService {
                 .toList());
         List<Incident> incidentToPropagate = findIncidentToPropagate(incidentList, currentPriceState);
         propagateIncidentList(incidentToPropagate);
-        removeIncidentFromList(incidentList);
+        removeIncidentFromList(incidentToPropagate);
     }
 
     private void propagateIncidentList(List<Incident> incidentToPropagate) {
