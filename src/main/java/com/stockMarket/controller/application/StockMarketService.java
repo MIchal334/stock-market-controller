@@ -50,10 +50,15 @@ public class StockMarketService {
                 .toList());
         List<Incident> incidentToPropagate = findIncidentToPropagate(incidentList, currentPriceState);
         propagateIncidentList(incidentToPropagate);
+        removeIncidentFromList(incidentToPropagate);
     }
 
     private void propagateIncidentList(List<Incident> incidentToPropagate) {
         incidentToPropagate.forEach(incident -> eventEmiter.emit(incident, DEFAULT_TOPIC_NAME));
+    }
+
+    private void removeIncidentFromList(List<Incident> incidentToRemove) {
+        incidentToRemove.forEach(incident -> removeIncidentById(incident.internalId()));
     }
 
     private List<Incident> findIncidentToPropagate(List<Incident> incidentsToCheck, Map<String, Float> currentPriceState) {

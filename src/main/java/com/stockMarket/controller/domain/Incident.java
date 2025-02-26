@@ -3,8 +3,10 @@ package com.stockMarket.controller.domain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stockMarket.controller.adapter.dto.IncidentEntity;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-public record Incident(String clientEmail, String companyName, float priceThreshold, ActionName action,
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public record Incident(Long internalId, String clientEmail, String companyName, float priceThreshold, ActionName action,
                        int actionAmount, CheckType checkType) {
     static private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -17,7 +19,7 @@ public record Incident(String clientEmail, String companyName, float priceThresh
     }
 
     public static Incident of(IncidentEntity incidentEntity, String email) {
-        return new Incident(email, incidentEntity.getCompanyName(), incidentEntity.getPriceThreshold(),
+        return new Incident(incidentEntity.getId(), email, incidentEntity.getCompanyName(), incidentEntity.getPriceThreshold(),
                 ActionName.valueOf(incidentEntity.getAction().getActionName()), incidentEntity.getActionAmount(),
                 CheckType.fromSymbol(incidentEntity.getCompereSing()));
     }

@@ -4,16 +4,17 @@ import com.stockMarket.controller.application.port.inbound.MarketDataProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class FakeAPIMarketDataProvider implements MarketDataProvider {
     @Value(value = "${market.dataEndpoint}")
     private String endpoint;
 
-    @Autowired
     private final WebClient webClient;
 
     public FakeAPIMarketDataProvider(WebClient webClient) {
