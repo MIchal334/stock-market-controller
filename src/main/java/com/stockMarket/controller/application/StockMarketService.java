@@ -42,7 +42,7 @@ public class StockMarketService {
     }
 
     @Scheduled(fixedRate = 5 * 1000)
-    public void checkIncidents() {
+    private void checkIncidents() {
         System.out.println("CHECK");
         List<Incident> incidentList = incidentRepository.getAllIncidentByEmail(DEFAULT_EMAIL);
         Map<String, Float> currentPriceState = marketDataProvider.getActionPriceForCompanyList(incidentList.stream()
